@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+    /* COLOR THEMES */
+
+    /* DARK THEME */
+
+    --very-dark-desaturated-blue-main-bg: hsl(222, 26%, 31%);
+    --very-dark-desaturated-blue-togglebg-keypadbg: hsl(223, 31%, 20%);
+    --very-dark-desaturated-blue-screen-bg: hsl(224, 36%, 15%);
+
+    /* keys */
+
+    --desaturated-dark-blue-key-bg: hsl(225, 21%, 49%);
+    --desaturated-dark-blue-key-shadow: hsl(224, 28%, 35%);
+
+    --red-keybg-toggle: hsl(6, 63%, 50%);
+    --dark-red-key-shadow: hsl(6, 70%, 34%);
+
+    --light-grayish-orange-key-bg: hsl(30, 25%, 89%);
+    --grayish-orange-key-shadow: hsl(28, 16%, 65%);
+
+    /* text */
+
+    --very-dark-grayish-blue: hsl(221, 14%, 31%);
+    --white: hsl(0, 0%, 100%);
+    --black-color: hsl(0, 0%, 0%);
+
+
+    /* LIGHT THEME */
+
+    --light-gray-main-bg: hsl(0, 0%, 90%);
+    --grayish-red-togglebg-keypadbg: hsl(0, 5%, 81%);
+    --very-light-gray-screen-bg: hsl(0, 0%, 93%);
+
+    /* keys */
+    --dark-moderate-cyan-key-bg: hsl(185, 42%, 37%);
+    --very-dark-cyan-key-shadow: hsl(185, 58%, 25%);
+
+    --orange-keybg-toggle: hsl(25, 98%, 40%);
+    --dark-orange-key-shadow: hsl(25, 99%, 27%);
+
+    --light-grayish-yellow-key-bg: hsl(45, 7%, 89%);
+    --dark-grayish-orange-key-shadow: hsl(35, 11%, 61%);
+
+    /* text */
+
+    --very-dark-grayish-yellow: hsl(60, 10%, 19%);
+    --white-text: hsl(0, 0%, 100%);
+    --white-color: hsl(0, 0%, 100%);
+}
+
+/* DARK THEME UTITLITY */
+
+.dark-mode {
+    --light-gray-main-bg: var(--very-dark-desaturated-blue-main-bg);
+
+    --grayish-red-togglebg-keypadbg: var(--very-dark-desaturated-blue-togglebg-keypadbg);
+
+    --very-light-gray-screen-bg: var(--very-dark-desaturated-blue-screen-bg);
+
+    /* keys */
+
+    --dark-moderate-cyan-key-bg: var(--desaturated-dark-blue-key-bg);
+
+    --very-dark-cyan-key-shadow: var(--desaturated-dark-blue-key-shadow);
+
+    --orange-keybg-toggle: var(--red-keybg-toggle);
+    --dark-orange-key-shadow: var(--dark-red-key-shadow);
+
+    --light-grayish-yellow-key-bg: var(--light-grayish-orange-key-bg);
+
+    --dark-grayish-orange-key-shadow: var(--grayish-orange-key-shadow);
+
+    /* text */
+
+    --very-dark-grayish-yellow: var(--very-dark-grayish-blue);
+    --black-color: var(--white-color);
+    --white-text: var(--white);
+}
+
+/* LIGHT THEME UTITLITY */
+
+.light-mode {
+    --very-dark-desaturated-blue-main-bg: var(--light-gray-main-bg);
+
+    --very-dark-desaturated-blue-togglebg-keypadbg: var(--grayish-red-togglebg-keypadbg);
+
+    --very-dark-desaturated-blue-screen-bg: var(--very-light-gray-screen-bg);
+
+    /* keys */
+
+    --desaturated-dark-blue-key-bg: var(--dark-moderate-cyan-key-bg);
+
+    --desaturated-dark-blue-key-shadow: var(--very-dark-cyan-key-shadow);
+
+    --red-keybg-toggle: var(--orange-keybg-toggle);
+
+    --dark-red-key-shadow: var(--dark-orange-key-shadow);
+
+    --light-grayish-orange-key-bg: var(--light-grayish-yellow-key-bg);
+
+    --grayish-orange-key-shadow: var( --dark-grayish-orange-key-shadow);
+
+    /* text */
+
+    --very-dark-grayish-blue: var(--very-dark-grayish-yellow);
+    --white: var(--white-text);
+    --white-color: var(--black-color)
+}
+
+
+body {
+    font-family: 'League Spartan', sans-serif;
+    background-color: var(--light-gray-main-bg);
+    overflow: hidden;
+}
+
+.container {
+    display: grid;
+    place-content: center;
+    height: 40rem;
+    border-radius: 15px;
+    overflow: hidden;
+    /* margin: 0 auto; */
+}
+
+.circle {
+    color: var(--black-color);
+    font-size: 1.1rem;
+}
+
+.theme__switcher {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 0.6rem;
+    /* max-inline-size: 22rem; */
+    overflow: hidden
+}
+
+.theme__wrapper {
+    font-size: 1.5rem;
+    color: var(--black-color);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#theme-toggle {
+    animation: rotate 2s linear infinite;
+    cursor: pointer;
+}
+
+.display {
+    margin-block-start: 1.1rem;
+    margin-block-end: 0.9rem;
+    background-color: var(--very-light-gray-screen-bg);
+    color: var(--black-color);
+    padding-block: 1.4rem;
+    padding-inline-end: 1.1rem;
+    font-size: 2.1rem;
+    text-align: end;
+    border-radius: 6px;
+    word-wrap: break-word;
+}
+
+.previous-operand {
+    margin-block-end: 0.7rem;
+    font-size: 1.2rem;
+}
+
+.calculator__keys {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 0.8rem;
+    background-color: var(--grayish-red-togglebg-keypadbg);
+    height: 25rem;
+    width: 25rem;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.calculator__key {
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 0.1rem 0.7rem;
+    color: var(--very-dark-grayish-yellow);
+    background-color: var(--light-grayish-yellow-key-bg);
+    box-shadow: 0 4px 1px 0 var(--dark-grayish-orange-key-shadow);
+    border: none;
+    border-radius: 7px;
+    height: 2.9rem;
+    cursor: pointer;
+}
+
+.calculator__key:active {
+    background-color: var(--white);
+}
+
+#clear {
+    color: var(--white-text);
+    background-color: var(--dark-moderate-cyan-key-bg);
+    box-shadow: 0 4px 1px 0 var(--very-dark-cyan-key-shadow);
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+#reset {
+    grid-column: 1 / span 2;
+    background-color: var(--dark-moderate-cyan-key-bg);
+    color: var(--white-text);
+    box-shadow: 0 4px 1px 0 var(--very-dark-cyan-key-shadow);
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+#calculate {
+    grid-column: 3 / span 2;
+    color: var(--white-text);
+    background-color: var(--orange-keybg-toggle);
+    box-shadow: 0 4px 1px 0 var(--dark-orange-key-shadow);
+    font-weight: 650;
+    font-size: 1.1rem;
+}
+
+#clear:active {
+    opacity: 0.7;
+}
+
+#reset:active {
+    opacity: 0.7;
+}
+
+#calculate:active {
+    opacity: 0.7;
+}
+
+@media (max-width: 50rem) {
+    .calculator__keys {
+        width: 20rem;
+    }
+}
+
+
+
+
+
+
+
+

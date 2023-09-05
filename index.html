@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+    <title>Calculator</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="theme__switcher">
+
+            <p class="circle">CIRCLE 30</p>
+
+            <div class="theme__wrapper">
+
+                <i class="fa-solid fa-circle-half-stroke" id="theme-toggle"></i>
+
+            </div>
+            
+
+        </div>
+
+        <div class="display" data-output>
+
+            <div class="previous-operand" data-previous-operand></div>
+
+            <div class="current-operand" data-current-operand></div>
+
+        </div>
+
+        <div class="calculator__keys">
+
+            <!-- data- attribute is just used to make the targeting/selecting in JS easier,
+            and we can see what part of html is being used by JS and by css -->
+
+            <button class="calculator__key" id="subtract" data-operator>-</button>
+
+            <button class="calculator__key" id="add" data-operator>+</button>
+
+            <button class="calculator__key" id="multiply" data-operator>x</button>
+
+            <button class="calculator__key" id="clear" data-delete>DEL</button>
+
+            <button class="calculator__key" id="divide" data-operator>/</button>
+
+            <button class="calculator__key" data-number>9</button>
+
+            <button class="calculator__key" data-number>8</button>
+
+            <button class="calculator__key" data-number>7</button>
+
+            <button class="calculator__key" data-number>6</button>
+
+            <button class="calculator__key" data-number>5</button>
+
+            <button class="calculator__key" data-number>4</button>
+
+            <button class="calculator__key" data-number>3</button>
+
+            <button class="calculator__key" data-number>2</button>
+
+            <button class="calculator__key" data-number>1</button>
+
+            <button class="calculator__key" data-number>0</button>
+
+            <button class="calculator__key" id="decimal" data-number>.</button>
+
+            <button class="calculator__key" id="reset" data-reset>RESET</button>
+
+            <button class="calculator__key" id="calculate" data-equal>=</button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
