@@ -43,7 +43,7 @@ const allBtn = Array.from(document.getElementsByClassName('calculator__key'));
 
 let operator = '';
 
-let currentValue = ['3', '*', '2'];
+let currentValue = [];
 
 allBtn.map((button) => {
     button.addEventListener('click', (e) => {
