@@ -55,6 +55,15 @@ allBtn.map((button) => {
                 currentValue = [];
                 operator = '';
                 break;
+                //addition
+            case '+':
+                display.innerText += currentValue.join + '+';
+                currentValue.push('+');
+                operator = '+';
+                break;
+            case 'DEL':
+                display.innerText = display.innerText.slice(0, -1);
+                break;
         }
     })
 })
