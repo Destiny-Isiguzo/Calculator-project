@@ -64,6 +64,12 @@ allBtn.map((button) => {
             case 'DEL':
                 display.innerText = display.innerText.slice(0, -1);
                 break;
+                // multiplication case
+            case 'x' :
+                display.innerText += currentValue.join + 'x';
+                currentValue.push('*');
+                operator = '*';
+                break;    
         }
     })
 })
