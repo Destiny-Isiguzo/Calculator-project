@@ -69,6 +69,11 @@ allBtn.map((button) => {
                 display.innerText += currentValue.join + 'x';
                 currentValue.push('*');
                 operator = '*';
+                break; 
+            case '-' :
+                display.innerText += currentValue.join + '-';
+                currentValue.push('-');
+                operator = '-';
                 break;    
         }
     })
