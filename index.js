@@ -57,31 +57,45 @@ allBtn.map((button) => {
                 break;
                 //addition
             case '+':
-                display.innerText += currentValue.join + '+';
+                display.innerText = currentValue.join('').trim() + '+';
                 currentValue.push('+');
                 operator = '+';
                 break;
             case 'DEL':
                 display.innerText = display.innerText.slice(0, -1);
+                // currentValue.pop();
                 break;
                 // multiplication case
             case 'x' :
-                display.innerText += currentValue.join + 'x';
+                display.innerText = currentValue.join('').trim() + '*';
                 currentValue.push('*');
                 operator = '*';
                 break; 
             case '-' :
-                display.innerText += currentValue.join + '-';
+                display.innerText = currentValue.join('').trim() + '-';
                 currentValue.push('-');
                 operator = '-';
                 break;
             case '=':
-                currentValue.push(display.innerText);
+                // currentValue.push(display.innerText);
                 let result = eval(currentValue.join(''));
                 display.innerText = result;
                 currentValue = [];
                 operator = '';
-                break; 
+                break;
+            case '.':
+                if(currentValue[-1] !== '.') {
+                    display.innerText = currentValue.join('') + '.'
+                    currentValue.push('.');
+                    break;
+                }
+            default:
+                // console.log(display.innerText)
+                display.innerText = currentValue.join('') + buttonText;
+                // console.log(display.innerText)
+                currentValue.push(buttonText);
+                // console.log(buttonText);
+                break;
         }
     })
 })
