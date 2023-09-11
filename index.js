@@ -55,6 +55,12 @@ allBtn.map((button) => {
                 currentValue = [];
                 operator = '';
                 break;
+                //addition
+            case '+':
+                display.innerText += currentValue.join + '+';
+                currentValue = [];
+                operator = '+';
+                break;
         }
     })
 })
