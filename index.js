@@ -58,8 +58,11 @@ allBtn.map((button) => {
                 //addition
             case '+':
                 display.innerText += currentValue.join + '+';
-                currentValue = [];
+                currentValue.push('+');
                 operator = '+';
+                break;
+            case 'DEL':
+                display.innerText = display.innerText.slice(0, -1);
                 break;
         }
     })
