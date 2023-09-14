@@ -63,7 +63,7 @@ allBtn.map((button) => {
                 break;
             case 'DEL':
                 display.innerText = display.innerText.slice(0, -1);
-                // currentValue.pop();
+                currentValue.pop();
                 break;
                 // multiplication case
             case 'x' :
@@ -84,17 +84,16 @@ allBtn.map((button) => {
                 operator = '';
                 break;
             case '.':
-                if(currentValue[-1] !== '.') {
-                    display.innerText = currentValue.join('') + '.'
+                const arr = [...currentValue];
+                const lastEl = arr.pop();
+                if (lastEl !== '.') {
+                    display.innerText = currentValue.join('') + '.';
                     currentValue.push('.');
-                    break;
-                }
+                } 
+                break;
             default:
-                // console.log(display.innerText)
                 display.innerText = currentValue.join('') + buttonText;
-                // console.log(display.innerText)
                 currentValue.push(buttonText);
-                // console.log(buttonText);
                 break;
         }
     })
