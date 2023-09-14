@@ -57,12 +57,16 @@ allBtn.map((button) => {
                 break;
                 //addition
             case '+':
-                display.innerText += currentValue.join + '+';
-                currentValue.push('+');
-                operator = '+';
+                let arr = [...currentValue];
+                let lastEl = arr.pop();
+                if (lastEl !== "+") {
+                  display.innerText = currentValue.join("").trim() + "+";
+                  currentValue.push("+");
+                }
                 break;
             case 'DEL':
                 display.innerText = display.innerText.slice(0, -1);
+                currentValue.pop();
                 break;
         }
     })
