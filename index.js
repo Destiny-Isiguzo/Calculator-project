@@ -58,7 +58,7 @@ allBtn.map((button) => {
                 //addition
             case '+':
                 let arr = [...currentValue];
-                let lastEl = arr.pop();
+                let lastEl =  arr.pop();
                 if (lastEl !== "+") {
                   display.innerText = currentValue.join("").trim() + "+";
                   currentValue.push("+");
