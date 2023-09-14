@@ -67,14 +67,25 @@ allBtn.map((button) => {
                 break;
                 // multiplication case
             case 'x' :
-                display.innerText = currentValue.join('').trim() + '*';
-                currentValue.push('*');
-                operator = '*';
+                const arrx = [...currentValue]
+               const lastElx = arrx.pop()
+               if (lastElx !== '*'){
+
+                   display.innerText = currentValue.join('').trim() + '*';
+                   currentValue.push('*');
+                   operator = '*';
+               }
                 break; 
             case '-' :
-                display.innerText = currentValue.join('').trim() + '-';
-                currentValue.push('-');
-                operator = '-';
+                const arrMinus = [...currentValue]
+               const lastElMinus = arrMinus.pop()
+               if (lastElMinus !== '-')
+               {
+
+                   display.innerText = currentValue.join('').trim() + '-';
+                   currentValue.push('-');
+                   operator = '-';
+                }
                 break;
             case '=':
                 /*
