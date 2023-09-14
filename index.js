@@ -8,7 +8,7 @@ const theme = localStorage.getItem("theme");
 
 // on page load, it checks if the local storage isn't empty and gives the body the dark mode class
 if (theme) {
-  body.classList.add("dark-mode");
+    body.classList.add("dark-mode");
 }
 
 // themeToggleBtn.addEventListener('click', () => {
@@ -16,14 +16,14 @@ if (theme) {
 // })
 
 themeToggleBtn.addEventListener("click", () => {
-  body.classList.toggle("dark-mode");
-  body.style.transition = "0.8s";
+    body.classList.toggle("dark-mode");
+    body.style.transition = "0.8s";
 
-  if (body.classList.contains("dark-mode")) {
-    localStorage.setItem("theme", "dark-mode");
-  } else {
-    localStorage.removeItem("theme");
-  }
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark-mode");
+    } else {
+        localStorage.removeItem("theme");
+    }
 });
 
 // FUNCTIONALITY
@@ -45,64 +45,69 @@ let currentValue = [];
 allBtn.map((button) => {
     button.addEventListener('click', (e) => {
         let buttonText = e.target.innerText;
+        // Create an empty variable to hold a shallow copy of the currentValue array
+        let arr;
+        // Create an empty variable to hold the last element of the arr array variable
+        let lastEl;
+
         switch (buttonText) {
             case 'RESET':
                 display.innerText = '';
                 currentValue = [];
                 operator = '';
                 break;
-                //addition
+            //addition
             case '+':
-                let arr = [...currentValue];
-                let lastEl =  arr.pop();
+                arr = [...currentValue];
+                lastEl = arr.pop();
                 if (lastEl !== "+") {
-                  display.innerText = currentValue.join("").trim() + "+";
-                  currentValue.push("+");
+                    display.innerText = currentValue.join("").trim() + "+";
+                    currentValue.push("+");
                 }
                 break;
             case 'DEL':
                 display.innerText = display.innerText.slice(0, -1);
                 currentValue.pop();
                 break;
-                  case "x":
-            display.innerText = currentValue.join("").trim() + "*";
-        currentValue.push("*");
-        operator = "*";
-        break;
-      case "-":
-        display.innerText = currentValue.join("").trim() + "-";
-        currentValue.push("-");
-        operator = "-";
-        break;
-      case "/":
-        let arr = [...currentValue];
-        let lastEl = arr.pop();
-        if (lastEl !== "/") {
-          display.innerText = currentValue.join("").trim() + "/";
-          currentValue.push("/");
+            case "x":
+                display.innerText = currentValue.join("").trim() + "*";
+                currentValue.push("*");
+                operator = "*";
+                break;
+            case "-":
+                display.innerText = currentValue.join("").trim() + "-";
+                currentValue.push("-");
+                operator = "-";
+                break;
+            case "/":
+                arr = [...currentValue];
+                lastEl = arr.pop();
+                if (lastEl !== "/") {
+                    display.innerText = currentValue.join("").trim() + "/";
+                    currentValue.push("/");
+                }
+                break;
+            case "=":
+                // currentValue.push(display.innerText);
+                let result = eval(currentValue.join(""));
+                display.innerText = result;
+                currentValue = [];
+                operator = "";
+                break;
+            case ".":
+                arr = [...currentValue];
+                lastEl = arr.pop();
+                if (lastEl !== ".") {
+                    display.innerText = currentValue.join("") + ".";
+                    currentValue.push(".");
+                }
+                break;
+            default:
+                display.innerText = currentValue.join("") + buttonText;
+                currentValue.push(buttonText);
+                break;
         }
-        break;
-      case "=":
-        // currentValue.push(display.innerText);
-        let result = eval(currentValue.join(""));
-        display.innerText = result;
-        currentValue = [];
-        operator = "";
-        break;
-      case ".":
-        arr = [...currentValue];
-        lastEl = arr.pop();
-        if (lastEl !== ".") {
-          display.innerText = currentValue.join("") + ".";
-          currentValue.push(".");
-        }
-        break;
-      default:
-        display.innerText = currentValue.join("") + buttonText;
-        currentValue.push(buttonText);
-        break;
-    }
-  });
+    });
 });
 
 // // storing current values and operations being used in a class
