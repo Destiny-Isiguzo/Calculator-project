@@ -121,6 +121,7 @@ allBtn.map((button) => {
                 // console.log(display.innerText)
                 currentValue.push(buttonText);
                 // console.log(buttonText);
+                // random stuff
                 break;
         }
     })
