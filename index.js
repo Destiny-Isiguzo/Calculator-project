@@ -43,28 +43,29 @@ let operator = "";
 let currentValue = [];
 
 allBtn.map((button) => {
-  button.addEventListener("click", (e) => {
-    let buttonText = e.target.innerText;
-
-    switch (buttonText) {
-      case "RESET":
-        display.innerText = "";
-        currentValue = [];
-        operator = "";
-        break;
-      //addition
-      case "+":
-        display.innerText = currentValue.join("").trim() + "+";
-        currentValue.push("+");
-        operator = "+";
-        break;
-      case "DEL":
-        display.innerText = display.innerText.slice(0, -1);
-        currentValue.pop();
-        break;
-      // multiplication case
-      case "x":
-        display.innerText = currentValue.join("").trim() + "*";
+    button.addEventListener('click', (e) => {
+        let buttonText = e.target.innerText;
+        switch (buttonText) {
+            case 'RESET':
+                display.innerText = '';
+                currentValue = [];
+                operator = '';
+                break;
+                //addition
+            case '+':
+                let arr = [...currentValue];
+                let lastEl =  arr.pop();
+                if (lastEl !== "+") {
+                  display.innerText = currentValue.join("").trim() + "+";
+                  currentValue.push("+");
+                }
+                break;
+            case 'DEL':
+                display.innerText = display.innerText.slice(0, -1);
+                currentValue.pop();
+                break;
+                  case "x":
+            display.innerText = currentValue.join("").trim() + "*";
         currentValue.push("*");
         operator = "*";
         break;
