@@ -63,7 +63,7 @@ allBtn.map((button) => {
                 break;
             case 'DEL':
                 display.innerText = display.innerText.slice(0, -1);
-                // currentValue.pop();
+                currentValue.pop();
                 break;
                 // multiplication case
             case 'x' :
@@ -77,18 +77,33 @@ allBtn.map((button) => {
                 operator = '-';
                 break;
             case '=':
+                /*
+                add a check for if last element is '.' and remove it
+                */
                 // currentValue.push(display.innerText);
+                const arr2 = [...currentValue]
+               const lastEl2 = arr2.pop()
+               if (lastEl2 === '.'){
+                    currentValue = ["Nan"]
+                    display.innerText = "Nan"
+               }
                 let result = eval(currentValue.join(''));
                 display.innerText = result;
                 currentValue = [];
                 operator = '';
                 break;
             case '.':
-                if(currentValue[-1] !== '.') {
-                    display.innerText = currentValue.join('') + '.'
+                /*
+                try to break the currentValue into 3 strings
+                */
+               const arr = [...currentValue]
+               const lastEl = arr.pop()
+               if (lastEl !== '.')
+                {
+                    display.innerText = currentValue.join('') + buttonText
                     currentValue.push('.');
-                    break;
                 }
+                break;
             default:
                 // console.log(display.innerText)
                 display.innerText = currentValue.join('') + buttonText;
