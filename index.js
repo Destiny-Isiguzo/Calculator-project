@@ -1,38 +1,35 @@
 // DARK/LIGHT MODE TOGGLE - ANIMATION
 
-const themeToggleBtn = document.getElementById('theme-toggle');
-const body = document.querySelector('body');
+const themeToggleBtn = document.getElementById("theme-toggle");
+const body = document.querySelector("body");
 
 // keeps track of the current state of the local storage
-const theme = localStorage.getItem('theme');
+const theme = localStorage.getItem("theme");
 
 // on page load, it checks if the local storage isn't empty and gives the body the dark mode class
 if (theme) {
-    body.classList.add('dark-mode');
+  body.classList.add("dark-mode");
 }
 
 // themeToggleBtn.addEventListener('click', () => {
 //     themeToggleBtn.classList.toggle('rotate');
 // })
 
+themeToggleBtn.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+  body.style.transition = "0.8s";
 
-themeToggleBtn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    body.style.transition = '0.8s';
-
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark-mode');
-    }else {
-        localStorage.removeItem('theme');
-    }
-})
-
-
+  if (body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark-mode");
+  } else {
+    localStorage.removeItem("theme");
+  }
+});
 
 // FUNCTIONALITY
 
-const display = document.querySelector('[data-output]');
-const allBtn = Array.from(document.getElementsByClassName('calculator__key'));
+const display = document.querySelector("[data-output]");
+const allBtn = Array.from(document.getElementsByClassName("calculator__key"));
 // const numberButton = document.querySelectorAll('[data-number]');
 // const operationButton = document.querySelectorAll('[data-operator]');
 // const deleteButton = document.querySelector('[data-delete]');
@@ -41,14 +38,13 @@ const allBtn = Array.from(document.getElementsByClassName('calculator__key'));
 // const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 // const currentOperandTextElement = document.querySelector('[data-current-operand]');
 
-let operator = '';
+let operator = "";
 
 let currentValue = [];
 
 allBtn.map((button) => {
     button.addEventListener('click', (e) => {
         let buttonText = e.target.innerText;
-
         switch (buttonText) {
             case 'RESET':
                 display.innerText = '';
@@ -68,9 +64,46 @@ allBtn.map((button) => {
                 display.innerText = display.innerText.slice(0, -1);
                 currentValue.pop();
                 break;
+                  case "x":
+            display.innerText = currentValue.join("").trim() + "*";
+        currentValue.push("*");
+        operator = "*";
+        break;
+      case "-":
+        display.innerText = currentValue.join("").trim() + "-";
+        currentValue.push("-");
+        operator = "-";
+        break;
+      case "/":
+        let arr = [...currentValue];
+        let lastEl = arr.pop();
+        if (lastEl !== "/") {
+          display.innerText = currentValue.join("").trim() + "/";
+          currentValue.push("/");
         }
-    })
-})
+        break;
+      case "=":
+        // currentValue.push(display.innerText);
+        let result = eval(currentValue.join(""));
+        display.innerText = result;
+        currentValue = [];
+        operator = "";
+        break;
+      case ".":
+        arr = [...currentValue];
+        lastEl = arr.pop();
+        if (lastEl !== ".") {
+          display.innerText = currentValue.join("") + ".";
+          currentValue.push(".");
+        }
+        break;
+      default:
+        display.innerText = currentValue.join("") + buttonText;
+        currentValue.push(buttonText);
+        break;
+    }
+  });
+});
 
 // // storing current values and operations being used in a class
 
@@ -93,12 +126,12 @@ allBtn.map((button) => {
 //         this.currentOperand = '';
 //         this.previousOperand = '';
 
-//         // stay undefined as there are not operations selected 
+//         // stay undefined as there are not operations selected
 //         this.operation = undefined;
 //     }
 
 //     delete() {
-//         // get the current operand and convert it to a String. using the slice we get the last value 
+//         // get the current operand and convert it to a String. using the slice we get the last value
 //         // and take it out starting from the index[0] all the way to the second to last index[-1] from the end
 //         this.currentOperand = this.currentOperand.toString().slice(0, -1);
 //     }
@@ -134,7 +167,7 @@ allBtn.map((button) => {
 
 //     // computes/calculates a single value to be displayed on screen
 //     compute() {
-//         // results of the computation function 
+//         // results of the computation function
 //         let computation;
 
 //         // converts the string to a number
@@ -180,11 +213,11 @@ allBtn.map((button) => {
 //             this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation}`;
 //             // clear out the previous operand and display the computed result on the current screen
 //         }else {
-//             this.previousOperandTextElement.innerText = ''; 
+//             this.previousOperandTextElement.innerText = '';
 //         }
 //     }
 // }
- 
+
 // // selecting the respective elements to manipulate
 
 // const numberButton = document.querySelectorAll('[data-number]');
@@ -211,7 +244,7 @@ allBtn.map((button) => {
 // // loop through all the buttons and add an event listener for the operation function
 // operationButton.forEach(button => {
 //     button.addEventListener('click', () => {
-//         // pass the text of whatever operation is chosen 
+//         // pass the text of whatever operation is chosen
 //         calculator.chooseOperation(button.innerText);
 //         calculator.updateDisplay();
 //     })
@@ -220,14 +253,14 @@ allBtn.map((button) => {
 // equalButton.addEventListener('click', button => {
 //     calculator.compute();
 //     calculator.updateDisplay();
-// }) 
+// })
 
 // resetButton.addEventListener('click', button => {
 //     calculator.clear();
 //     calculator.updateDisplay();
-// }) 
+// })
 
 // deleteButton.addEventListener('click', button => {
 //     calculator.delete();
 //     calculator.updateDisplay();
-// }) 
+// })
