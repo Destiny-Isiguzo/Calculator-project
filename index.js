@@ -8,7 +8,7 @@ const theme = localStorage.getItem("theme");
 
 // on page load, it checks if the local storage isn't empty and gives the body the dark mode class
 if (theme) {
-    body.classList.add("dark-mode");
+  body.classList.add("dark-mode");
 }
 
 // themeToggleBtn.addEventListener('click', () => {
@@ -16,14 +16,14 @@ if (theme) {
 // })
 
 themeToggleBtn.addEventListener("click", () => {
-    body.classList.toggle("dark-mode");
-    body.style.transition = "0.8s";
+  body.classList.toggle("dark-mode");
+  body.style.transition = "0.8s";
 
-    if (body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark-mode");
-    } else {
-        localStorage.removeItem("theme");
-    }
+  if (body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark-mode");
+  } else {
+    localStorage.removeItem("theme");
+  }
 });
 
 // FUNCTIONALITY
@@ -43,79 +43,84 @@ let operator = "";
 let currentValue = [];
 
 allBtn.map((button) => {
-    button.addEventListener('click', (e) => {
-        let buttonText = e.target.innerText;
-        // Create an empty variable to hold a shallow copy of the currentValue array
-        let arr;
-        // Create an empty variable to hold the last element of the arr array variable
-        let lastEl;
+  button.addEventListener("click", (e) => {
+    let buttonText = e.target.innerText;
+    // Create an empty variable to hold a shallow copy of the currentValue array
+    let arr;
+    // Create an empty variable to hold the last element of the arr array variable
+    let lastEl;
 
-        switch (buttonText) {
-            case 'RESET':
-                display.innerText = '';
-                currentValue = [];
-                operator = '';
-                break;
-            //addition
-            case '+':
-                arr = [...currentValue];
-                lastEl = arr.pop();
-                if (lastEl !== "+") {
-                    display.innerText = currentValue.join("").trim() + "+";
-                    currentValue.push("+");
-                }
-                break;
-            case 'DEL':
-                currentValue.pop();
-                display.innerText = currentValue.join("").trim();
-                break;
-            case "x":
-                display.innerText = currentValue.join("").trim() + "*";
-                currentValue.push("*");
-                operator = "*";
-                break;
-            case "-":
-                display.innerText = currentValue.join("").trim() + "-";
-                currentValue.push("-");
-                operator = "-";
-                break;
-            case "/":
-                arr = [...currentValue];
-                lastEl = arr.pop();
-                if (lastEl !== "/") {
-                    display.innerText = currentValue.join("").trim() + "/";
-                    currentValue.push("/");
-                }
-                break;
-            case "=":
-                // currentValue.push(display.innerText);
-                let result = eval(currentValue.join(""));
-                // Check result is invalid
-                if(result.toString() === "Infinity") {
-                    display.innerText = "Cannot divide by zero";
-                    currentValue = [];
-                } else {
-                    display.innerText = result;
-                    currentValue = [result];
-                }
-                console.log(currentValue);
-                operator = "";
-                break;
-            case ".":
-                arr = [...currentValue];
-                lastEl = arr.pop();
-                if (lastEl !== ".") {
-                    display.innerText = currentValue.join("") + ".";
-                    currentValue.push(".");
-                }
-                break;
-            default:
-                display.innerText = currentValue.join("") + buttonText;
-                currentValue.push(buttonText);
-                console.log(currentValue);
-                break;
+    switch (buttonText) {
+      case "RESET":
+        display.innerText = "";
+        currentValue = [];
+        operator = "";
+        break;
+      //addition
+      case "+":
+        arr = [...currentValue];
+        lastEl = arr.pop();
+        if (lastEl !== "+") {
+          display.innerText = currentValue.join("").trim() + "+";
+          currentValue.push("+");
         }
-    });
+        break;
+      case "DEL":
+        currentValue.pop();
+        display.innerText = currentValue.join("").trim();
+        break;
+      case "x":
+        display.innerText = currentValue.join("").trim() + "*";
+        currentValue.push("*");
+        operator = "*";
+        break;
+      case "-":
+        display.innerText = currentValue.join("").trim() + "-";
+        currentValue.push("-");
+        operator = "-";
+        break;
+      case "/":
+        arr = [...currentValue];
+        lastEl = arr.pop();
+        if (lastEl !== "/") {
+          display.innerText = currentValue.join("").trim() + "/";
+          currentValue.push("/");
+        }
+        break;
+      case "=":
+        // currentValue.push(display.innerText);
+        let result = eval(currentValue.join(""));
+        if (isNaN(result)) {
+          display.innerText = "";
+        } else {
+          display.innerText = result;
+        }
+        // Check result is invalid
+        if (result.toString() === "Infinity") {
+          display.innerText = "Cannot divide by zero";
+          currentValue = [];
+        } else {
+          display.innerText = result;
+          currentValue = [result];
+        }
+        console.log(currentValue);
+        operator = "";
+        break;
+      case ".":
+        arr = [...currentValue];
+        lastEl = arr.pop();
+        if (lastEl !== ".") {
+          display.innerText = currentValue.join("") + ".";
+          currentValue.push(".");
+        }
+        break;
+      default:
+        display.innerText = currentValue.join("") + buttonText;
+        currentValue.push(buttonText);
+        console.log(currentValue);
+        break;
+    }
+  });
 });
 
 // // storing current values and operations being used in a class
