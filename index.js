@@ -66,8 +66,8 @@ allBtn.map((button) => {
                 }
                 break;
             case 'DEL':
-                display.innerText = display.innerText.slice(0, -1);
                 currentValue.pop();
+                display.innerText = currentValue.join("").trim();
                 break;
             case "x":
                 display.innerText = currentValue.join("").trim() + "*";
@@ -90,8 +90,15 @@ allBtn.map((button) => {
             case "=":
                 // currentValue.push(display.innerText);
                 let result = eval(currentValue.join(""));
-                display.innerText = result;
-                currentValue = [];
+                // Check result is invalid
+                if(result.toString() === "Infinity") {
+                    display.innerText = "Cannot divide by zero";
+                    currentValue = [];
+                } else {
+                    display.innerText = result;
+                    currentValue = [result];
+                }
+                console.log(currentValue);
                 operator = "";
                 break;
             case ".":
@@ -105,6 +112,7 @@ allBtn.map((button) => {
             default:
                 display.innerText = currentValue.join("") + buttonText;
                 currentValue.push(buttonText);
+                console.log(currentValue);
                 break;
         }
     });
