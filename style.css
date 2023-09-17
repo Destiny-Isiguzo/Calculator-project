@@ -257,4 +257,8 @@ body {
   .calculator__keys {
     width: 20rem;
   }
+
+  .display {
+    width: 20rem;
+  }
 }

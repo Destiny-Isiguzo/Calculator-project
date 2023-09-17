@@ -70,13 +70,21 @@ allBtn.map((button) => {
         display.innerText = currentValue.join("").trim();
         break;
       case "x":
-        display.innerText = currentValue.join("").trim() + "*";
-        currentValue.push("*");
+        arr = [...currentValue];
+        lastEl = arr.pop();
+        if (lastEl !== "*") {
+          display.innerText = currentValue.join("").trim() + "*";
+          currentValue.push("*");
+        }
         operator = "*";
         break;
       case "-":
-        display.innerText = currentValue.join("").trim() + "-";
-        currentValue.push("-");
+        arr = [...currentValue];
+        lastEl = arr.pop();
+        if (lastEl !== "-") {
+          display.innerText = currentValue.join("").trim() + "-";
+          currentValue.push("-");
+        }
         operator = "-";
         break;
       case "/":
@@ -97,7 +105,7 @@ allBtn.map((button) => {
         }
         // Check result is invalid
         if (result.toString() === "Infinity") {
-          display.innerText = "Cannot divide by zero";
+          display.innerText = "Invalid operation"; //'Cannot divide by zero'
           currentValue = [];
         } else {
           display.innerText = result;
